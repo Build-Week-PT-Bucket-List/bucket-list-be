@@ -7,7 +7,8 @@
     "server": "nodemon index.js",
     "start": "node index.js",
     "debug": "nodemon  --inspect index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "redo": "heroku run npx knex migrate:rollback -a bw-pt-bucket-list && heroku run npx knex migrate:latest -a bw-pt-bucket-list"
   },
   "repository": {
     "type": "git",

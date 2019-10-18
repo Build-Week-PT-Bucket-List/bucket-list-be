@@ -1,280 +1,295 @@
 # Bucket List API
 
-## Base URL: https://bucket-list-be.herokuapp.com/
+## Base URL: https://bw-pt-bucket-list.herokuapp.com/
 
 ---
 
 ##Endpoints
 
 ### GET /api/users
-	-header:
-			-Authorization : USER_TOKEN
-			
+
+    -header:
+    		-Authorization : USER_TOKEN
+
     -returns all users
     	*example:
     		  {
-				  "users": [
-				    {
-				      "id": 1,
-				      "name": "Test User",
-				      "email": "test@test.com",
-				      "created": "2019-06-28T15:52:58.768Z"
-				    },
-				    {
-				      "id": 2,
-				      "name": "Test User 2",
-				      "email": "test2@test.com",
-				      "created": "2019-06-28T15:52:58.768Z"
-				    }
-				  ]
-				}
+    			  "users": [
+    			    {
+    			      "id": 1,
+    			      "name": "Test User",
+    			      "email": "test@test.com",
+    			      "created": "2019-06-28T15:52:58.768Z"
+    			    },
+    			    {
+    			      "id": 2,
+    			      "name": "Test User 2",
+    			      "email": "test2@test.com",
+    			      "created": "2019-06-28T15:52:58.768Z"
+    			    }
+    			  ]
+    			}
 
 ### GET /api/user
-	-header:
-			-Authorization : USER_TOKEN -Required
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
 
     -returns the user currently logged in
     	*example:
     		  {
-  				"user": {
-    				"id": 42,
-    				"name": "Testy McTestFace",
-    				"email": "testy@mctestface.com",
-    				"created": "2019-08-15T17:26:45.990Z"
-  				}
-			  }
 
-
+"user": {
+"id": 42,
+"name": "Testy McTestFace",
+"email": "testy@mctestface.com",
+"created": "2019-08-15T17:26:45.990Z"
+}
+}
 
 ### GET /api/user/:user_id
-		-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    	-header:
+    		-Authorization : USER_TOKEN -Required
+
     	-returns a user by id
     		*example:
     		  {
-  				"user": {
-    				"id": 42,
-    				"name": "Testy McTestFace",
-    				"email": "testy@mctestface.com",
-    				"created": "2019-08-15T17:26:45.990Z"
-  				}
-			  }
 
+"user": {
+"id": 42,
+"name": "Testy McTestFace",
+"email": "testy@mctestface.com",
+"created": "2019-08-15T17:26:45.990Z"
+}
+}
 
 ### GET /api/user/:user_id/items
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
 
     -returns all bucket list items for user_id
     	*example:
     		{
-			  "items": [
-			    {
-			      "id": 14,
-			      "user_id": 3,
-			      "completed": false,
-			      "description": "testing",
-			      "created": "2019-07-22T18:22:41.317Z"
-			    }
-			  ]
-			}
+    		  "items": [
+    		    {
+    		      "id": 14,
+    		      "user_id": 3,
+    		      "completed": false,
+    		      "description": "testing",
+    		      "created": "2019-07-22T18:22:41.317Z"
+    		    }
+    		  ]
+    		}
 
 ### GET /api/user/friends
-	-header:
-		-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
 
     -returns logged in users friends
 
 ### GET /api/item/:item_id
-	-header:
-		-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
 
     -returns bucket list item by id
-		*example:
-			{
-			  "item": {
-			    "id": 1,
-			    "user_id": 1,
-			    "completed": false,
-			    "description": "Drive a Ferrari",
-			    "created": "2019-06-28T15:52:58.870Z"
-			  }
-			}
-			
+    	*example:
+    		{
+    		  "item": {
+    		    "id": 1,
+    		    "user_id": 1,
+    		    "completed": false,
+    		    "description": "Drive a Ferrari",
+    		    "created": "2019-06-28T15:52:58.870Z"
+    		  }
+    		}
+
+
 ### GET /api/item/:item_id/posts
-	-header:
-		-Authorization : USER_TOKEN -Required
-		
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
     -returns all posts for item_id
-		*example:
-			{
-			  "posts": [
-			    {
-			      "id": 1,
-			      "item_id": 1,
-			      "message": "I did not drive one",
-			      "created": "2019-06-28T15:52:58.978Z"
-			    },
-			    {
-			      "id": 2,
-			      "item_id": 1,
-			      "message": "They are too damn expensive",
-			      "created": "2019-06-28T15:52:58.978Z"
-			    }
-			  ]
-			}
+    	*example:
+    		{
+    		  "posts": [
+    		    {
+    		      "id": 1,
+    		      "item_id": 1,
+    		      "message": "I did not drive one",
+    		      "created": "2019-06-28T15:52:58.978Z"
+    		    },
+    		    {
+    		      "id": 2,
+    		      "item_id": 1,
+    		      "message": "They are too damn expensive",
+    		      "created": "2019-06-28T15:52:58.978Z"
+    		    }
+    		  ]
+    		}
 
 ### GET /api/item/post/:post_id
-	-header:
-		-Authorization : USER_TOKEN -Required
-		
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
     -returns a post by id
     	*example:
     		{
-			  "post": {
-			    "id": 1,
-			    "item_id": 1,
-			    "message": "I did not drive one",
-			    "created": "2019-06-28T15:52:58.978Z"
-			  }
-			}
+    		  "post": {
+    		    "id": 1,
+    		    "item_id": 1,
+    		    "message": "I did not drive one",
+    		    "created": "2019-06-28T15:52:58.978Z"
+    		  }
+    		}
 
 ### GET /api/item/post/:post_id/images
-	-header:
-		-Authorization : USER_TOKEN -Required
-		
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
     -returns an array of all images for post_id
     	*example:
     		{
-			  "images": [
-			    {
-			      "id": 1,
-			      "post_id": 3,
-			      "url": "https://1bo9y82e76el2rf8ms1m5i0r-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/NaPaliRiders_Hcom_slider_v2.jpg",
-			      "created": "2019-06-28T15:52:59.077Z"
-			    }
-			  ]
-			}
+    		  "images": [
+    		    {
+    		      "id": 1,
+    		      "post_id": 3,
+    		      "url": "https://1bo9y82e76el2rf8ms1m5i0r-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/NaPaliRiders_Hcom_slider_v2.jpg",
+    		      "created": "2019-06-28T15:52:59.077Z"
+    		    }
+    		  ]
+    		}
 
 ### GET /api/item/post/image/:image_id
-	-header:
-		-Authorization : USER_TOKEN -Required
-		
-    -returns image by id 
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
+    -returns image by id
     	*example:
     		{
-			  "image": {
-			    "id": 2,
-			    "post_id": 15,
-			    "url": "",
-			    "created": "2019-07-30T23:56:20.718Z"
-			  }
-			}
+    		  "image": {
+    		    "id": 2,
+    		    "post_id": 15,
+    		    "url": "",
+    		    "created": "2019-07-30T23:56:20.718Z"
+    		  }
+    		}
 
 ### POST /api/register
-	-header:
-		 -Content-Type : application/json -Required
-		 -Authorization : USER_TOKEN -Required
+
+    -header:
+    	 -Content-Type : application/json -Required
+    	 -Authorization : USER_TOKEN -Required
 
 
     -body:
         -name -Required
         -email -Required
         -password -Required
-        
+
     *example
-    		
+
     		{
-				"name": "Testy McTestFace",
-				"email": "testy@mctestface.com",
-				"password": "password"
-			}
+    			"name": "Testy McTestFace",
+    			"email": "testy@mctestface.com",
+    			"password": "password"
+    		}
 
     -returns { message: "User created", token: "USER_TOKEN" }
 
 ### POST /api/login
-	 -header:
-		 -Content-Type : application/json -Required
-		 -Authorization : USER_TOKEN -Required
+
+     -header:
+    	 -Content-Type : application/json -Required
+    	 -Authorization : USER_TOKEN -Required
 
     -body:
         -email -Required
         -password -Required
 
-		*example
-	    		
-	    		{
-					"email": "testy@mctestface.com",
-					"password": "password"
-				}
+    	*example
+
+        		{
+    				"email": "testy@mctestface.com",
+    				"password": "password"
+    			}
 
     -returns { message: "Logged in", token: "USER_TOKEN" }
 
 ### POST /api/item
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
 
     -body:
         -user_id -Required
         -completed -Optional, default is false
         -description -Required
-		
-		*example
-	    		
-	    		{
-					"user_id": 10,
-					"completed": false
-					"description": "Swim in Scrooge McDuck's Money Vault"
-				}
+
+    	*example
+
+        		{
+    				"user_id": 10,
+    				"completed": false
+    				"description": "Swim in Scrooge McDuck's Money Vault"
+    			}
 
 
     -returns id of new item
     	*returns {"error":"(intermediate value) is not iterable"} even though POST is successful.
 
 ### POST /api/item/post
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
 
     -body:
         -item_id -Required
         -message -Required
-		
-		*example
-	    		
-	    		{
-					"item_id": 32,
-					"message": "hey look at me I am a message!"
-				}
+
+    	*example
+
+        		{
+    				"item_id": 32,
+    				"message": "hey look at me I am a message!"
+    			}
 
 
     -returns id of new post
     	*returns {"error":"(intermediate value) is not iterable"} even though POST is successful.
 
 ### POST /api/item/post/image
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     -body:
         -post_id -Required
-        -image 
+        -image
         -url
-		
-		*example
-	    		
-	    		{
-					"post_id": 17,
-					"image": _IMAGE_,
-					"url": "_URL_TO_STORE_IMAGE_"
-				}
+
+    	*example
+
+        		{
+    				"post_id": 17,
+    				"image": null,
+    				"url": "_URL_TO_STORE_IMAGE_"
+    			}
 
 
     image and url are not required so you can choose how to store an image.
@@ -283,241 +298,243 @@
     	*returns {"error":"(intermediate value) is not iterable"} even though POST is successful.
 
 ### POST /api/user/friends/:friend_id
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     Creates a friendship with friend having friend_id (friend_id is the user_id of the person you want to create a friendship with.)
 
     -returns { message: Friendship created }
 
 ### PUT /api/item/:item_id
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     -body:
         -completed -Optional, default is false
         -description -Required
-				
-		*example
-	    		
-	    		{
-					"completed": true,
-					"description": "Going bungy jumping with the Dalai Lama was sooo amazing!"
-				}
+
+    	*example
+
+        		{
+    				"completed": true,
+    				"description": "Going bungy jumping with the Dalai Lama was sooo amazing!"
+    			}
 
 
      -returns id of updated item
-				
-		*example:
-			{
-			  "id": 1
-			}
+
+    	*example:
+    		{
+    		  "id": 1
+    		}
 
 ### PUT /api/item/post/:post_id
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     -body:
         -item_id -Required
         -message -Required
-				
-		*example
-	    		
-	    		{
-					"item_id": 32,
-					"message": "Hey, I updated your stupid message dude..."
-				}
+
+    	*example
+
+        		{
+    				"item_id": 32,
+    				"message": "Hey, I updated your stupid message dude..."
+    			}
 
 
     -returns id of updated post
-				
-		*example:
-	    		
-	    		{
-				  "id": 1
-				}
 
+    	*example:
 
-### PUT /item/post/image/:image_id
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+        		{
+    			  "id": 1
+    			}
+
+### PUT /api/item/post/image/:image_id
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     -body:
         -post_id -Required
-        -image 
+        -image
         -url
-				
-		*example
-	    		
-	    		{
-					"post_id": 17,
-					"image": _UPDATED_IMAGE_,
-					"url": "_UPDATED_URL_"
-				}
+
+    	*example
+
+        		{
+    				"post_id": 17,
+    				"image": null,
+    				"url": "_UPDATED_URL_"
+    			}
 
 
     -returns id of updated image
-				
-		*example:
-	    		
-	    		{
-				  "id": 1
-				}
 
+    	*example:
+
+        		{
+    			  "id": 1
+    			}
 
 ### DELETE /api/item/:item_id
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
     -deletes an item by id and returns { message: "deleted id id# " }
-		*example:
-			{
-			  "message": "deleted id 33"
-			}
+    	*example:
+    		{
+    		  "message": "deleted id 33"
+    		}
 
 ### DELETE /api/item/post/:post_id
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
     -deletes an post by id and returns { message: "deleted id id# " }
-		*example:
-			{
-			  "message": "deleted id 17"
-			}
+    	*example:
+    		{
+    		  "message": "deleted id 17"
+    		}
 
 ### DELETE /api/item/post/image/:image_id
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
     -deletes an image by id and returns { message: "deleted id id# " }
-		*example:
-			{
-			  "message": "deleted id 3"
-			}
+    	*example:
+    		{
+    		  "message": "deleted id 3"
+    		}
 
 ### DELETE /api/user/friends/:friend_id
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
     -deletes a friendship for friend_id and returns { message: "Unfriended " }
     	*example:
-			{
-			  "message": "Unfriended"
-			}
-
-
-
-
+    		{
+    		  "message": "Unfriended"
+    		}
 
 ---
-
 
 ##Contact Endpoints
 
 ### GET /api/contacts
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
     -returns an array of all contacts
-    				
-		*example
-	    		
-	    		{
-				  "contacts": [
-				    {
-				      "id": 1,
-				      "firstname": "Test",
-				      "lastname": "test",
-				      "email": "test@test.com"
-				    }
-				  ]
-				}
+
+    	*example
+
+        		{
+    			  "contacts": [
+    			    {
+    			      "id": 1,
+    			      "firstname": "Test",
+    			      "lastname": "test",
+    			      "email": "test@test.com"
+    			    }
+    			  ]
+    			}
 
 ### GET /api/contacts/:id/messages
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
-    -returns an array of all messages for a contact
-				
-		*example
-	    		
-	    		{
-				  "contacts": [
-				    {
-				      "id": 1,
-				      "firstname": "Test",
-				      "lastname": "test",
-				      "email": "test@test.com"
-				    }
-				  ]
-				}
 
- 
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
+    -returns an array of all messages for a contact
+
+    	*example
+
+        		{
+    			  "contacts": [
+    			    {
+    			      "id": 1,
+    			      "firstname": "Test",
+    			      "lastname": "test",
+    			      "email": "test@test.com"
+    			    }
+    			  ]
+    			}
+
 ### POST /api/contacts
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     -body:
         -firstname -Required
         -lastname  -Required
         -email     -Required
-					
-		*example
-	    		
-	    		{
-					"firstname": "Zaboom",
-					"lastname": "Afoo",
-					"email": "zaboom@afoo.com"
-				}
+
+    	*example
+
+        		{
+    				"firstname": "Zaboom",
+    				"lastname": "Afoo",
+    				"email": "zaboom@afoo.com"
+    			}
 
 
     -returns id of new contact
-				
-		*example
-		
-				{
-				  "message": "Contact added",
-				  "id": 2
-				}
 
+    	*example
+
+    			{
+    			  "message": "Contact added",
+    			  "id": 2
+    			}
 
 ### POST /api/contacts/:contact_id/messages
-	-header:
-			-Content-Type : application/json -Required
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
     -body:
         -message    -Required
-					
-		*example
-	    		
-	    		{
-					"message": "I'm a new message!"
-				}
+
+    	*example
+
+        		{
+    				"message": "I'm a new message!"
+    			}
 
 
     -returns id of new message
-				
-		*example
-	    		
-	    		{
-				  "message": "Message added",
-				  "id": 5
-				}
 
+    	*example
+
+        		{
+    			  "message": "Message added",
+    			  "id": 5
+    			}
 
 ### DELETE /api/contacts/:id
-	-header:
-			-Authorization : USER_TOKEN -Required
-			
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
     -deletes a contact by id
     	*example:
     		{
-			  "message": "Contact Deleted"
-			}
-
+    		  "message": "Contact Deleted"
+    		}
