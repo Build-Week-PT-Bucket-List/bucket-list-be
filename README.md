@@ -397,7 +397,7 @@
 
         		{
     				"post_id": 17,
-    				"voice_memo": "_URL_TO_STORE_IMAGE_"
+    				"voice_memo": "_URL_TO_STORE_VOICE_MEMO_"
     			}
 
 
