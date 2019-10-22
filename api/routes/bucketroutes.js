@@ -23,7 +23,7 @@ router.post('/item', (req, res) => {
     .then(response => {
       console.log('response', response);
       console.log('req.body', req.body);
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       console.error(error);
@@ -81,7 +81,7 @@ router.post('/item/post', (req, res) => {
   bucketPostDb
     .createBucketItemPost(req.body)
     .then(response => {
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
@@ -110,7 +110,7 @@ router.delete('/item/post/:id', (req, res) => {
     });
 });
 
-router.get('/item/post/:post_id/images', (req, res) => {
+router.get('/item/post/:post_id/media', (req, res) => {
   bucketPostImageDb
     .getBucketItemPostImageByPostId(req.params.post_id)
     .then(response => {
@@ -122,7 +122,7 @@ router.get('/item/post/:post_id/images', (req, res) => {
     });
 });
 
-router.get('/item/post/image/:id', (req, res) => {
+router.get('/item/post/media/:id', (req, res) => {
   bucketPostImageDb
     .getBucketItemPostImageById(req.params.id)
     .then(response => {
@@ -134,18 +134,18 @@ router.get('/item/post/image/:id', (req, res) => {
     });
 });
 
-router.post('/item/post/image', (req, res) => {
+router.post('/item/post/media', (req, res) => {
   bucketPostImageDb
     .createBucketItemPostImage(req.body)
     .then(response => {
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
     });
 });
 
-router.put('/item/post/image/:id', (req, res) => {
+router.put('/item/post/media/:id', (req, res) => {
   bucketPostImageDb
     .updateBucketItemPostImage(req.params.id, req.body)
     .then(response => {
@@ -156,7 +156,7 @@ router.put('/item/post/image/:id', (req, res) => {
     });
 });
 
-router.delete('/item/post/image/:id', (req, res) => {
+router.delete('/item/post/media/:id', (req, res) => {
   bucketPostImageDb
     .deleteBucketItemPostImage(req.params.id)
     .then(response => {

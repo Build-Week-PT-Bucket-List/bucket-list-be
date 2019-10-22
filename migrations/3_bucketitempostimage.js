@@ -11,7 +11,9 @@ exports.up = function(knex, Promise) {
            .inTable('bucketitempost')
            .onDelete("CASCADE")
            .onUpdate("CASCADE");
-        tbl.string('url');
+        tbl.string('photo');
+        tbl.string('video');
+        tbl.string('voice_memo');
         tbl.timestamp('created')
         .defaultTo(knex.fn.now());
     });
