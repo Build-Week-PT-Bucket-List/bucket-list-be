@@ -110,7 +110,6 @@
     		  }
     		}
 
-
 ### GET /api/item/:item_id/posts
 
     -header:
@@ -181,6 +180,74 @@
     		    "id": 2,
     		    "post_id": 15,
     		    "url": "",
+    		    "created": "2019-07-30T23:56:20.718Z"
+    		  }
+    		}
+
+### GET /api/item/post/:post_id/videos
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
+    -returns an array of all videos for post_id
+    	*example:
+    		{
+    		  "videos": [
+    		    {
+    		      "id": 1,
+    		      "post_id": 3,
+    		      "video": "https://1bo9y82e76el2rf8ms1m5i0r-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/NaPaliRiders_Hcom_slider_v2.jpg",
+    		      "created": "2019-06-28T15:52:59.077Z"
+    		    }
+    		  ]
+    		}
+
+### GET /api/item/post/video/:video_id
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
+    -returns image by id
+    	*example:
+    		{
+    		  "video": {
+    		    "id": 2,
+    		    "post_id": 15,
+    		    "video": "",
+    		    "created": "2019-07-30T23:56:20.718Z"
+    		  }
+    		}
+
+### GET /api/item/post/:post_id/voices
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
+    -returns an array of all voice memos for post_id
+    	*example:
+    		{
+    		  "voice_memo": [
+    		    {
+    		      "id": 1,
+    		      "post_id": 3,
+    		      "voice_memo": "https://1bo9y82e76el2rf8ms1m5i0r-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/NaPaliRiders_Hcom_slider_v2.jpg",
+    		      "created": "2019-06-28T15:52:59.077Z"
+    		    }
+    		  ]
+    		}
+
+### GET /api/item/post/voice/:voice_memo_id
+
+    -header:
+    	-Authorization : USER_TOKEN -Required
+
+    -returns image by id
+    	*example:
+    		{
+    		  "image": {
+    		    "id": 2,
+    		    "post_id": 15,
+    		    "voice_memo": "",
     		    "created": "2019-07-30T23:56:20.718Z"
     		  }
     		}
@@ -280,22 +347,63 @@
 
     -body:
         -post_id -Required
-        -image
-        -url
+        -photo
 
     	*example
 
         		{
     				"post_id": 17,
-    				"image": null,
-    				"url": "_URL_TO_STORE_IMAGE_"
+    				"photo": "_URL_TO_STORE_IMAGE_"
     			}
 
 
-    image and url are not required so you can choose how to store an image.
+    photo is required.
 
     -returns id of new image
-    	*returns {"error":"(intermediate value) is not iterable"} even though POST is successful.
+
+### POST /api/item/post/video
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
+    -body:
+        -post_id -Required
+        -video
+
+    	*example
+
+        		{
+    				"post_id": 17,
+    				"video": "_URL_TO_STORE_VIDEO_"
+    			}
+
+
+    video is required.
+
+    -returns id of new video
+
+### POST /api/item/post/voice
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
+    -body:
+        -post_id -Required
+        -voice_memo
+
+    	*example
+
+        		{
+    				"post_id": 17,
+    				"voice_memo": "_URL_TO_STORE_IMAGE_"
+    			}
+
+
+    voice_memo is required.
+
+    -returns id of new voice_memo
 
 ### POST /api/user/friends/:friend_id
 
@@ -386,6 +494,59 @@
     			  "id": 1
     			}
 
+### PUT /api/item/post/video/:video_id
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
+    -body:
+        -post_id -Required
+        -video
+
+    	*example
+
+        		{
+    				"post_id": 17,
+    				"video": "_UPDATED_VIDEO_"
+    			}
+
+
+    -returns id of updated video
+
+    	*example:
+
+        		{
+    			  "id": 1
+    			}
+
+### PUT /api/item/post/voice/:voice_memo_id
+
+    -header:
+    		-Content-Type : application/json -Required
+    		-Authorization : USER_TOKEN -Required
+
+    -body:
+        -post_id -Required
+        -voice_memo
+
+    	*example
+
+        		{
+    				"post_id": 17,
+    				"image": null,
+    				"voice_memo": "_UPDATED_VOICE_MEMO_"
+    			}
+
+
+    -returns id of updated image
+
+    	*example:
+
+        		{
+    			  "id": 1
+    			}
+
 ### DELETE /api/item/:item_id
 
     -header:
@@ -414,6 +575,28 @@
     		-Authorization : USER_TOKEN -Required
 
     -deletes an image by id and returns { message: "deleted id id# " }
+    	*example:
+    		{
+    		  "message": "deleted id 3"
+    		}
+
+### DELETE /api/item/post/video/:video_id
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
+    -deletes video by id and returns { message: "deleted id id# " }
+    	*example:
+    		{
+    		  "message": "deleted id 3"
+    		}
+
+### DELETE /api/item/post/voice/:voice_memo_id
+
+    -header:
+    		-Authorization : USER_TOKEN -Required
+
+    -deletes voice memo by id and returns { message: "deleted id id# " }
     	*example:
     		{
     		  "message": "deleted id 3"
