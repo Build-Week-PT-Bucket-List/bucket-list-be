@@ -1,6 +1,8 @@
 const bucketDb = require('../models/bucketitemmodel');
 const bucketPostDb = require('../models/bucketitempostmodel');
 const bucketPostImageDb = require('../models/bucketitempostimagemodel');
+const videoDb = require('../models/videoModel');
+const voiceDb = require('../models/voiceModel');
 const express = require('express');
 
 const router = express.Router();
@@ -158,6 +160,124 @@ router.put('/item/post/image/:id', (req, res) => {
 
 router.delete('/item/post/image/:id', (req, res) => {
   bucketPostImageDb
+    .deleteBucketItemPostImage(req.params.id)
+    .then(response => {
+      res.status(200).json({ message: `deleted id ${req.params.id}` });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+//
+
+router.get('/item/post/:post_id/videos', (req, res) => {
+  videoDb
+    .getBucketItemPostImageByPostId(req.params.post_id)
+    .then(response => {
+      if (response) res.status(200).json({ images: response });
+      else res.status(404).json({ message: 'No images for this post found' });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.get('/item/post/video/:id', (req, res) => {
+  videoDb
+    .getBucketItemPostImageById(req.params.id)
+    .then(response => {
+      if (response) res.status(200).json({ image: response });
+      else res.status(404).json({ message: 'Image not found' });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.post('/item/post/video', (req, res) => {
+  videoDb
+    .createBucketItemPostImage(req.body)
+    .then(response => {
+      res.status(200).json({ id: response });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.put('/item/post/video/:id', (req, res) => {
+  videoDb
+    .updateBucketItemPostImage(req.params.id, req.body)
+    .then(response => {
+      res.status(200).json({ id: response });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.delete('/item/post/video/:id', (req, res) => {
+  videoDb
+    .deleteBucketItemPostImage(req.params.id)
+    .then(response => {
+      res.status(200).json({ message: `deleted id ${req.params.id}` });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+// voice
+
+router.get('/item/post/:post_id/voices', (req, res) => {
+  voiceDb
+    .getBucketItemPostImageByPostId(req.params.post_id)
+    .then(response => {
+      if (response) res.status(200).json({ images: response });
+      else res.status(404).json({ message: 'No images for this post found' });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.get('/item/post/voice/:id', (req, res) => {
+  voiceDb
+    .getBucketItemPostImageById(req.params.id)
+    .then(response => {
+      if (response) res.status(200).json({ image: response });
+      else res.status(404).json({ message: 'Image not found' });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.post('/item/post/voice', (req, res) => {
+  voiceDb
+    .createBucketItemPostImage(req.body)
+    .then(response => {
+      res.status(200).json({ id: response });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.put('/item/post/voice/:id', (req, res) => {
+  voiceDb
+    .updateBucketItemPostImage(req.params.id, req.body)
+    .then(response => {
+      res.status(200).json({ id: response });
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.delete('/item/post/voice/:id', (req, res) => {
+  voiceDb
     .deleteBucketItemPostImage(req.params.id)
     .then(response => {
       res.status(200).json({ message: `deleted id ${req.params.id}` });
