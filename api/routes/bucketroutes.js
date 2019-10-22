@@ -25,7 +25,7 @@ router.post('/item', (req, res) => {
     .then(response => {
       console.log('response', response);
       console.log('req.body', req.body);
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       console.error(error);
@@ -83,7 +83,7 @@ router.post('/item/post', (req, res) => {
   bucketPostDb
     .createBucketItemPost(req.body)
     .then(response => {
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
@@ -140,7 +140,7 @@ router.post('/item/post/image', (req, res) => {
   bucketPostImageDb
     .createBucketItemPostImage(req.body)
     .then(response => {
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
@@ -199,7 +199,7 @@ router.post('/item/post/video', (req, res) => {
   videoDb
     .createBucketItemPostImage(req.body)
     .then(response => {
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
@@ -258,7 +258,7 @@ router.post('/item/post/voice', (req, res) => {
   voiceDb
     .createBucketItemPostImage(req.body)
     .then(response => {
-      res.status(200).json({ id: response });
+      res.status(200).json({ id: response.id });
     })
     .catch(error => {
       res.status(500).json({ error: error.message });
